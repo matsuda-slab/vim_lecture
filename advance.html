@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>vim講座 | 発展編</title>
+  <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+  <main>
+    <h1>vim講座</h1>
+
+    <nav>
+      <ol>
+        <li><a href="intro.html">vimとは</a></li>
+        <li><a href="basic.html">vimの基本操作</a></li>
+        <li><a href="advance.html">発展編</a></li>
+        <li><a href="vimrc.html">vimrcについて</a></li>
+        <li><a href="tech.html">便利な応用技</a></li>
+      </ol>
+    </nav>
+
+    <h3>さまざまなコマンド</h3>
+    <ul>
+      <li>カーソル移動
+        <table>
+          <tr>
+            <td>w</td>
+            <td>1単語先に移動 (単語の先頭に移動)</td>
+          </tr>
+          <tr>
+            <td>e</td>
+            <td>1単語先に移動 (単語の末尾に移動)</td>
+          </tr>
+          <tr>
+            <td>b</td>
+            <td>1単語前に移動 (単語の先頭に移動)</td>
+          </tr>
+          <tr>
+            <td>$</td>
+            <td>行末に移動</td>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>行頭に移動</td>
+          </tr>
+          <tr>
+            <td>ctrl-d</td>
+            <td>半画面下へ移動</td>
+          </tr>
+          <tr>
+            <td>ctrl-u</td>
+            <td>半画面上へ移動</td>
+          </tr>
+          <tr>
+            <td>ctrl-f</td>
+            <td>1画面下へ移動</td>
+          </tr>
+          <tr>
+            <td>ctrl-b</td>
+            <td>1画面上へ移動</td>
+          </tr>
+          <tr>
+            <td>gg</td>
+            <td>ファイルの先頭に移動</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>ファイルの末尾に移動</td>
+          </tr>
+          <tr>
+            <td>H</td>
+            <td>画面上の一番上の行に移動</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>画面上の中央の行に移動</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>画面上の一番下の行に移動</td>
+          </tr>
+          <tr>
+            <td>%</td>
+            <td>対応するカッコに移動</td>
+          </tr>
+        </table>
+      </li>
+      <li>文字入力
+        <table>
+          <tr>
+            <td>I</td>
+            <td>行頭に文字を入力する（インサートモードになる）</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>行末に文字を入力する（インサートモードになる）</td>
+          </tr>
+          <tr>
+            <td>O</td>
+            <td>カーソルのある一つ上の行に文字を入力する（インサートモードになる）</td>
+          </tr>
+          <tr>
+            <td>cc</td>
+            <td>カーソルのある行を消して、その行に文字を入力する（インサートモードになる）</td>
+          </tr>
+          <tr>
+            <td>x</td>
+            <td>カーソルのある1文字を削除</td>
+          </tr>
+          <tr>
+            <td>X</td>
+            <td>カーソルの前を1文字削除 (インサートモードでのbackspaceキーと同じ)</td>
+            <tr>
+              <td>dd</td>
+              <td>カーソルのある行を削除</td>
+            </tr>
+            <tr>
+              <td>d</td>
+              <td>削除 (範囲選択をして、その範囲を削除するときなどに使用</td>
+            </tr>
+        </table>
+      </li>
+      <li>コピー & ペースト
+        <table>
+          <tr>
+            <td>yy</td>
+            <td>カーソルのある行をヤンク</td>
+          </tr>
+          <tr>
+            <td>y</td>
+            <td>ヤンク（範囲選択をして、その範囲をヤンクするときなどに使用）</td>
+          </tr>
+          <tr>
+            <td>p</td>
+            <td>カーソルの後ろにペースト</td>
+          </tr>
+          <tr>
+            <td>P</td>
+            <td>カーソル位置にペースト</td>
+          </tr>
+        </table>
+      </li>
+      <li>Undo & Redo
+        <table>
+          <tr>
+            <td>u</td>
+            <td>一つ前の操作を取り消す(Undo)</td>
+          </tr>
+          <tr>
+            <td>ctrl-r</td>
+            <td>Undoの逆</td>
+          </tr>
+          <tr>
+            <td>.</td>
+            <td>一つ前の一連の動作を繰り返す</td>
+          </tr>
+        </table>
+      </li>
+      <li>置換
+        <table>
+          <tr>
+            <td>r</td>
+            <td>カーソルのある1文字を置換（r押した後、置換したい文字を入力）</td>
+          </tr>
+          <tr>
+            <td>R</td>
+            <td>カーソル位置から、文字を上書きする（いわば上書きモードになる）</td>
+          </tr>
+        </table>
+      </li>
+      <li>検索
+        <ul>
+          <li>/ を押すと、検索モードになり、つづけて検索したい文字列を入力して Enter を押す</li>
+          <li>* を押すと、カーソル上の文字列（1単語）を検索する</li>
+          <li>n で次のヒット文字列、Shift-n で前のヒット文字列に移動する</li>
+        </ul>
+      </li>
+      <li>インデント
+        <table>
+          <tr>
+            <td>==</td>
+            <td>カーソルのある行をオートインデント
+          </tr>
+          <tr>
+            <td><<</td>
+            <td>左に1つインデント</td>
+          </tr>
+          <tr>
+            <td>>></td>
+            <td>右に1つインデント</td>
+          </tr>
+        </table>
+      <li>その他
+        <table>
+          <tr>
+            <td>ctrl-a</td>
+            <td>数値のインクリメント</td>
+          </tr>
+          <tr>
+            <td>ctrl-x</td>
+            <td>数値のデクリメント</td>
+          </tr>
+        </table>
+    </ul>
+    <h3>範囲選択</h3>
+    <ul>
+      <li>次のようなコマンドでビジュアルモードに移行し、カーソル移動で範囲選択する</li>
+    </ul>
+    <table>
+      <tr>
+        <td>v</td>
+        <td>普通のビジュアルモードになる</td>
+      </tr>
+      <tr>
+        <td>V</td>
+        <td>行単位で範囲選択できる</td>
+      </tr>
+      <tr>
+        <td>ctrl-v</td>
+        <td>矩形選択モードになる</td>
+      </tr>
+    </table>
+    <h3>タブ</h3>
+    <ul>
+      <li>1つのvim上で、複数のタブを使って複数のファイルを開ける</li>
+    </ul>
+    <table>
+      <tr>
+        <td>:tabe</td>
+        <td>別タブを開く</td>
+      </tr>
+      <tr>
+        <td>:tabe {ファイル名}</td>
+        <td>別タブで{ファイル名}を開く</td>
+      </tr>
+      <tr>
+        <td>gt</td>
+        <td>次のタブに移動</td>
+      </tr>
+      <tr>
+        <td>gT</td>
+        <td>前のタブに移動</td>
+      </tr>
+      <tr>
+        <td>:tabo</td>
+        <td>今いるタブ以外のタブをすべて閉じる</td>
+      </tr>
+    </table>
+
+
+
+  </main>
+</body>
+
+</html>
+

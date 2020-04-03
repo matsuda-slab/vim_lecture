@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>vim講座 | vimの基本操作</title>
+    <link rel="stylesheet" href="css/common.css">
+  </head>
+
+  <body>
+    <main>
+      <h1>vim講座</h1>
+
+      <nav>
+        <ol>
+          <li><a href="intro.html">vimとは</a></li>
+          <li><a href="basic.html">vimの基本操作</a></li>
+          <li><a href="advance.html">発展編</a></li>
+          <li><a href="vimrc.html">vimrcについて</a></li>
+          <li><a href="tech.html">便利な応用技</a></li>
+        </ol>
+      </nav>
+
+      <div class="contents">
+        <ul>
+          <li>vimではモードを切り替えながら様々な操作を行う
+            <ul>
+              <li>ノーマルモード : 主にカーソルの移動, コピーペーストなど</li>
+              <li>インサートモード : 文字の入力</li>
+              <li>コマンドモード : コマンドの実行</li><br>
+              <li>ビジュアルモード : 範囲選択</li><br>
+              <li>(optional)Exモード</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>vimを使ってみよう</h3>
+        <ol>
+          <li>作業用のディレクトリを作ろう
+            <table>
+              <tr>
+                <td>$ mkdir test</td>
+              </tr>
+            </table>
+          </li>
+          <li>vimを起動しよう
+            <ul>
+              <li>vim と入力して Enter を押すと、vimが起動する</li>
+              <li>vim {ファイル名} と入れて Enter を押すと、そのファイルをvimで開く</li>
+            </ul>
+            <table>
+              <tr>
+                <td>$ vim hello.c</td>
+              </tr>
+            </table>
+          </li>
+          <li>文字を入力してみよう
+            <ul>
+              <li>i を押すと、ノーマルモードからインサートモードに切り替わり、自由に文字入力ができる</li>
+            </ul>
+            <table>
+              <tr>
+                <td>i</td>
+                <td>カーソル位置に文字を入力</td>
+              </tr>
+              <tr>
+                <td>a</td>
+                <td>カーソルの後ろに文字を入力</td>
+              </tr>
+              <tr>
+                <td>o</td>
+                <td>カーソルの次の行に文字を入力</td>
+              </tr>
+              <tr>
+                <td>s</td>
+                <td>カーソルの文字を消して、その位置に文字を入力</td>
+              </tr>
+            </table>
+          </li>
+          <li>カーソルを動かそう
+            <ul>
+              <li>ESCキー を 2回 押すと、ノーマルモードに戻る</li>
+              <li>ノーマルモードで h j k l を押すと、それぞれカーソルが左 下 上 右に移動する</li>
+            </ul>
+          </li>
+          <li>ファイルを保存しよう
+            <ul>
+              <li>: でコマンドモードに切り替わる</li>
+              <li>コマンドモードで w と打ち、Enterをたたくと、保存される</li>
+            </ul>
+          </li>
+          <li>vimを終了しよう
+            <ul>
+              <li>コマンドモードで q と打ち、Enterをたたくと、vimを終了する</li>
+              <li>コマンドモードで wq と打ち、Enterをたたくと、保存と終了を一度に行う</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </main>
+  </body>
+
+</html>
+
