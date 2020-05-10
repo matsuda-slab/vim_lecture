@@ -1,28 +1,190 @@
 <!doctype html>
 <html lang="ja">
 
-<head>
-  <meta charset="utf-8">
-  <title>vim講座 | 便利な応用技</title>
-  <link rel="stylesheet" href="css/common.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>vim講座 | その他便利な機能・応用技</title>
+    <link rel="stylesheet" href="css/common.css">
+  </head>
 
-<body>
-  <main>
-    <h1>vim講座</h1>
+  <body>
+    <main>
+      <h1>vim講座</h1>
 
-    <nav>
-      <ol>
-        <li><a href="intro.html">vimとは</a></li>
-        <li><a href="basic.html">vimの基本操作</a></li>
-        <li><a href="advance.html">発展編</a></li>
-        <li><a href="vimrc.html">vimrcについて</a></li>
-        <li><a href="tech.html">便利な応用技</a></li>
-      </ol>
-    </nav>
+      <!-- メニュー -->
+      <div id=menu>
+        <ol>
+          <li><a href="intro.html">vimとは</a></li>
+          <li><a href="basic.html">vimの基本操作</a></li>
+          <li><a href="advance.html">vimのさまざまな機能</a></li>
+          <li><a href="setting.html">vimの設定</a></li>
+          <li class="current"><a href="tech.html">その他便利な機能・応用技</a></li>
+        </ol>
+      </div>
 
-  </main>
-</body>
+      <h2 class="sub-title">便利な応用技</h2>
+
+      <!-- テキストオブジェクト -->
+      <div class="contents">
+        <div class="sub-contents">
+          <h3>テキストオブジェクト</h3>
+          <ul>
+            <li>特定のモーションとコマンドの組み合わせで、便利な操作ができる</li>
+            <table class="keys">
+              <tr>
+                <th>テキストオブジェクト</th>
+                <th>意味</th>
+              </tr>
+              <tr>
+                <td>iw</td>
+                <td>カーソル上の1単語選択</td>
+              </tr>
+              <tr>
+                <td>ip</td>
+                <td>カーソル上の段落を選択 (最後の改行含まない)</td>
+              </tr>
+              <tr>
+                <td>ap</td>
+                <td>カーソル上の段落を選択 (最後の改行含む)</td>
+              </tr>
+              <tr>
+                <td>i"</td>
+                <td>""の中身を選択</td>
+              </tr>
+              <tr>
+                <td>a"</td>
+                <td>""を選択</td>
+              </tr>
+              <tr>
+                <td>i)</td>
+                <td>()の中身を選択</td>
+              </tr>
+              <tr>
+                <td>a)</td>
+                <td>()を選択</td>
+              </tr>
+              <tr>
+                <td>it</td>
+                <td>タグの中身を選択 (html, xmlなど)</td>
+              </tr>
+              <tr>
+                <td>at</td>
+                <td>タグを選択 (html, xmlなど)</td>
+              </tr>
+            </table>
+            <li>カッコのやつは, ( でも ) でもどちらでもよい</li>
+          </ul>
+        </div>
+
+        <!--テキストオブジェクトの活用例/-->
+        <div class="sub-contents">
+          <h3>テキストオブジェクトの活用例</h3>
+          <ul>
+            <li>1単語削除<br>
+              <b>diw</b>
+            </li>
+            <li>1単語削除して入力する<br>
+              <b>ciw</b>
+            </li>
+            <li>"hogehoge"をヤンク<br>
+              <b>ya"</b>
+            </li>
+          </ul>
+          <div class="try">
+            <span class="try-title">Try!</span>
+            <ol>
+              <li>printSquare(a, b,..,g) のカッコの中にカーソルを移動させる</li>
+              <li>d i (</li>
+            </ol>
+          </div>
+        </div>
+
+        <!--知っておくと便利なコマンド/-->
+        <div class="sub-contents">
+          <h3>知っておくと便利なコマンド</h3>
+          <table class="keys">
+            <tr>
+              <td>(インサートモードで) ctrl-n または ctrl-p</td>
+              <td>補完候補を選ぶ</td>
+            </tr>
+            <tr>
+              <td>:cd %:h</td>
+              <td>カレントディレクトリを現在の<br>ファイルのディレクトリに変更(vim起動中のみ)</td>
+            </tr>
+            <tr>
+              <td>(パスを入力中に) ctrl-x ctrl-f</td>
+              <td>ファイル補完 (パスの候補を出してくれる)</td>
+            </tr>
+            <tr>
+              <td>(インサートモードで) ctrl-u</td>
+              <td>1行の内容削除</td>
+            </tr>
+            <tr>
+              <td>(インサートモードで) ctrl-w</td>
+              <td>1単語削除</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- レジスタの応用 -->
+        <div class="sub-contents">
+          <h3>レジスタの応用</h3>
+          <ul>
+            <li>連番を一気に入力する</li>
+            <div class="try">
+              <span class="try-title">Try!</span>
+              <ol>
+                <li>最下行で o で挿入モードに入り、a[0] と入力し、<br>
+                ノーマルモードに戻る</li>
+                <li>yy で a[0]をヤンク</li>
+                <li>8p で 8行にわたってペースト</li>
+                <li>最初のa[0] の 0 にカーソルを持ってくる</li>
+                <li>q a &emsp; (レジスタaに記録開始)</li>
+                <li>v y &emsp; (0をヤンク)</li>
+                <li>j</li>
+                <li>v p &emsp; (一つ下にペースト)</li>
+                <li>ctrl-a &emsp; (インクリメント)</li>
+                <li>q &emsp; (記録終了)</li>
+                <li>7 @ a &emsp; (レジスタaの操作を7回繰り返す)</li>
+              </ol>
+            </div>
+          </ul>
+        </div>
+
+        <!-- PacVim -->
+        <div class="sub-contents">
+          <h3>PacVim</h3>
+          <ul>
+            <li>パックマン風ゲーム</li>
+            <li>遊び方
+              <table>
+                <tr class="cmd">
+                  <td>$ ssh eagle</td>
+                </tr>
+                <tr class="cmd">
+                  <td>$ cd ~matsuda/Share</td>
+                </tr>
+                <tr class="cmd">
+                  <td>$ ./pacvim</td>
+                </tr>
+              </table>
+            </li>
+            <li>./pacvim 0 n &emsp; ←　ノーマルモード レベル0</li>
+            <li>./pacvim 0 h &emsp; ←  ハードモード レベル0</li>
+            <li>レベル : 0 ~ 9</li>
+            <li>引数を指定しないと、自動でハードモード レベル0からのスタートになるので注意</li>
+            <br>
+            <li><font size=5px color=#32cd32><b>課題</b></font>
+              <ul>
+                <li><b>PacVim を ノーマルモードでレベル5までクリアする</b></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </main>
+  </body>
 
 </html>
 

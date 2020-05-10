@@ -1,258 +1,740 @@
 <!doctype html>
 <html lang="ja">
 
-<head>
-  <meta charset="utf-8">
-  <title>vim講座 | 発展編</title>
-  <link rel="stylesheet" href="css/common.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>vim講座 | vimのさまざまな機能</title>
+    <link rel="stylesheet" href="css/common.css">
+  </head>
 
-<body>
-  <main>
-    <h1>vim講座</h1>
+  <body>
+    <main>
+      <h1>vim講座</h1>
 
-    <nav>
-      <ol>
-        <li><a href="intro.html">vimとは</a></li>
-        <li><a href="basic.html">vimの基本操作</a></li>
-        <li><a href="advance.html">発展編</a></li>
-        <li><a href="vimrc.html">vimrcについて</a></li>
-        <li><a href="tech.html">便利な応用技</a></li>
-      </ol>
-    </nav>
+      <!-- メニュー -->
+      <div id=menu>
+        <ol>
+          <li><a href="intro.html">vimとは</a></li>
+          <li><a href="basic.html">vimの基本操作</a></li>
+          <li class="current"><a href="advance.html">vimのさまざまな機能</a></li>
+          <li><a href="setting.html">vimの設定</a></li>
+          <li><a href="tech.html">その他便利な機能・応用技</a></li>
+        </ol>
+      </div>
 
-    <h3>さまざまなコマンド</h3>
-    <ul>
-      <li>カーソル移動
-        <table>
-          <tr>
-            <td>w</td>
-            <td>1単語先に移動 (単語の先頭に移動)</td>
-          </tr>
-          <tr>
-            <td>e</td>
-            <td>1単語先に移動 (単語の末尾に移動)</td>
-          </tr>
-          <tr>
-            <td>b</td>
-            <td>1単語前に移動 (単語の先頭に移動)</td>
-          </tr>
-          <tr>
-            <td>$</td>
-            <td>行末に移動</td>
-          </tr>
-          <tr>
-            <td>0</td>
-            <td>行頭に移動</td>
-          </tr>
-          <tr>
-            <td>ctrl-d</td>
-            <td>半画面下へ移動</td>
-          </tr>
-          <tr>
-            <td>ctrl-u</td>
-            <td>半画面上へ移動</td>
-          </tr>
-          <tr>
-            <td>ctrl-f</td>
-            <td>1画面下へ移動</td>
-          </tr>
-          <tr>
-            <td>ctrl-b</td>
-            <td>1画面上へ移動</td>
-          </tr>
-          <tr>
-            <td>gg</td>
-            <td>ファイルの先頭に移動</td>
-          </tr>
-          <tr>
-            <td>G</td>
-            <td>ファイルの末尾に移動</td>
-          </tr>
-          <tr>
-            <td>H</td>
-            <td>画面上の一番上の行に移動</td>
-          </tr>
-          <tr>
-            <td>M</td>
-            <td>画面上の中央の行に移動</td>
-          </tr>
-          <tr>
-            <td>L</td>
-            <td>画面上の一番下の行に移動</td>
-          </tr>
-          <tr>
-            <td>%</td>
-            <td>対応するカッコに移動</td>
-          </tr>
-        </table>
-      </li>
-      <li>文字入力
-        <table>
-          <tr>
-            <td>I</td>
-            <td>行頭に文字を入力する（インサートモードになる）</td>
-          </tr>
-          <tr>
-            <td>A</td>
-            <td>行末に文字を入力する（インサートモードになる）</td>
-          </tr>
-          <tr>
-            <td>O</td>
-            <td>カーソルのある一つ上の行に文字を入力する（インサートモードになる）</td>
-          </tr>
-          <tr>
-            <td>cc</td>
-            <td>カーソルのある行を消して、その行に文字を入力する（インサートモードになる）</td>
-          </tr>
-          <tr>
-            <td>x</td>
-            <td>カーソルのある1文字を削除</td>
-          </tr>
-          <tr>
-            <td>X</td>
-            <td>カーソルの前を1文字削除 (インサートモードでのbackspaceキーと同じ)</td>
-            <tr>
-              <td>dd</td>
-              <td>カーソルのある行を削除</td>
-            </tr>
-            <tr>
-              <td>d</td>
-              <td>削除 (範囲選択をして、その範囲を削除するときなどに使用</td>
-            </tr>
-        </table>
-      </li>
-      <li>コピー & ペースト
-        <table>
-          <tr>
-            <td>yy</td>
-            <td>カーソルのある行をヤンク</td>
-          </tr>
-          <tr>
-            <td>y</td>
-            <td>ヤンク（範囲選択をして、その範囲をヤンクするときなどに使用）</td>
-          </tr>
-          <tr>
-            <td>p</td>
-            <td>カーソルの後ろにペースト</td>
-          </tr>
-          <tr>
-            <td>P</td>
-            <td>カーソル位置にペースト</td>
-          </tr>
-        </table>
-      </li>
-      <li>Undo & Redo
-        <table>
-          <tr>
-            <td>u</td>
-            <td>一つ前の操作を取り消す(Undo)</td>
-          </tr>
-          <tr>
-            <td>ctrl-r</td>
-            <td>Undoの逆</td>
-          </tr>
-          <tr>
-            <td>.</td>
-            <td>一つ前の一連の動作を繰り返す</td>
-          </tr>
-        </table>
-      </li>
-      <li>置換
-        <table>
-          <tr>
-            <td>r</td>
-            <td>カーソルのある1文字を置換（r押した後、置換したい文字を入力）</td>
-          </tr>
-          <tr>
-            <td>R</td>
-            <td>カーソル位置から、文字を上書きする（いわば上書きモードになる）</td>
-          </tr>
-        </table>
-      </li>
-      <li>検索
-        <ul>
-          <li>/ を押すと、検索モードになり、つづけて検索したい文字列を入力して Enter を押す</li>
-          <li>* を押すと、カーソル上の文字列（1単語）を検索する</li>
-          <li>n で次のヒット文字列、Shift-n で前のヒット文字列に移動する</li>
+      <h2 class="sub-title">vimのさまざまな機能</h2>
+
+      <div class="contents">
+        <!-- 目次 -->
+        <ul class="index">
+          <span id="index-title">おしながき</span>
+          <li><a href="#ready">準備</a></li>
+          <li><a href="#commands">さまざまなコマンド</a></li>
+          <li><a href="#visual">範囲選択</a></li>
+          <li><a href="#replace">検索して一括置換</a></li>
+          <li><a href="#tab">タブ</a></li>
+          <li><a href="#split">画面分割</a></li>
+          <li><a href="#buffer">バッファ</a></li>
+          <li><a href="#register">レジスタ</a></li>
+          <li><a href="#history">コマンド履歴・検索履歴</a></li>
+          <li><a href="#fold">折り畳み</a></li>
+          <li><a href="#ope_motion">モーションとオペレータ</a></li>
+          <li><a href="#binary">vimでバイナリ編集</a></li>
         </ul>
-      </li>
-      <li>インデント
-        <table>
-          <tr>
-            <td>==</td>
-            <td>カーソルのある行をオートインデント
-          </tr>
-          <tr>
-            <td><<</td>
-            <td>左に1つインデント</td>
-          </tr>
-          <tr>
-            <td>>></td>
-            <td>右に1つインデント</td>
-          </tr>
-        </table>
-      <li>その他
-        <table>
-          <tr>
-            <td>ctrl-a</td>
-            <td>数値のインクリメント</td>
-          </tr>
-          <tr>
-            <td>ctrl-x</td>
-            <td>数値のデクリメント</td>
-          </tr>
-        </table>
-    </ul>
-    <h3>範囲選択</h3>
-    <ul>
-      <li>次のようなコマンドでビジュアルモードに移行し、カーソル移動で範囲選択する</li>
-    </ul>
-    <table>
-      <tr>
-        <td>v</td>
-        <td>普通のビジュアルモードになる</td>
-      </tr>
-      <tr>
-        <td>V</td>
-        <td>行単位で範囲選択できる</td>
-      </tr>
-      <tr>
-        <td>ctrl-v</td>
-        <td>矩形選択モードになる</td>
-      </tr>
-    </table>
-    <h3>タブ</h3>
-    <ul>
-      <li>1つのvim上で、複数のタブを使って複数のファイルを開ける</li>
-    </ul>
-    <table>
-      <tr>
-        <td>:tabe</td>
-        <td>別タブを開く</td>
-      </tr>
-      <tr>
-        <td>:tabe {ファイル名}</td>
-        <td>別タブで{ファイル名}を開く</td>
-      </tr>
-      <tr>
-        <td>gt</td>
-        <td>次のタブに移動</td>
-      </tr>
-      <tr>
-        <td>gT</td>
-        <td>前のタブに移動</td>
-      </tr>
-      <tr>
-        <td>:tabo</td>
-        <td>今いるタブ以外のタブをすべて閉じる</td>
-      </tr>
-    </table>
 
+        <!-- 準備 -->
+        <div class="sub-contents">
+          <h3 id="ready">準備</h3>
+          <div class="try">
+            <span class="try-title">Try!</span>
+            <ol>
+              <li>まつだのShareディレクトリからサンプルプログラムをコピー
+                <table>
+                  <tr class="cmd">
+                    <td>$ cp ~/../matsuda/Share/sample.c .</td>
+                  </tr>
+                </table>
+              </li>
+              <br>
+              <li>vim で sample.c を開く</li>
+              <br>
+              <li>次のコマンドを打つ
+                <table>
+                  <tr class="cmd">
+                    <td>:set number</td>
+                  </tr>
+                </table>
+              </li>
+            </ol>
+          </div>
+        </div>
 
+        <!-- さまざまなコマンド -->
+        <div class="sub-contents">
+          <h3 id="commands">さまざまなコマンド</h3>
+          <ul>
+            <li>カーソル移動
+              <table class="keys">
+                <tr>
+                  <td>w</td>
+                  <td>1単語先に移動 (単語の先頭に移動)</td>
+                </tr>
+                <tr>
+                  <td>e</td>
+                  <td>1単語先に移動 (単語の末尾に移動)</td>
+                </tr>
+                <tr>
+                  <td>b</td>
+                  <td>1単語前に移動 (単語の先頭に移動)</td>
+                </tr>
+                <tr>
+                  <td>$</td>
+                  <td>行末に移動</td>
+                </tr>
+                <tr>
+                  <td>^</td>
+                  <td>左端に移動</td>
+                </tr>
+                <tr>
+                  <td>0</td>
+                  <td>行頭に移動</td>
+                </tr>
+                <tr>
+                  <td>ctrl-d</td>
+                  <td>半画面下へ移動</td>
+                </tr>
+                <tr>
+                  <td>ctrl-u</td>
+                  <td>半画面上へ移動</td>
+                </tr>
+                <tr>
+                  <td>ctrl-f</td>
+                  <td>1画面下へ移動</td>
+                </tr>
+                <tr>
+                  <td>ctrl-b</td>
+                  <td>1画面上へ移動</td>
+                </tr>
+                <tr>
+                  <td>gg</td>
+                  <td>ファイルの先頭に移動</td>
+                </tr>
+                <tr>
+                  <td>G</td>
+                  <td>ファイルの末尾に移動</td>
+                </tr>
+                <tr>
+                  <td>H</td>
+                  <td>画面上の一番上の行に移動</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>画面上の中央の行に移動</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>画面上の一番下の行に移動</td>
+                </tr>
+                <tr>
+                  <td>%</td>
+                  <td>対応するカッコに移動</td>
+                </tr>
+                <tr>
+                  <td>{</td>
+                  <td>次の空行に移動</td>
+                </tr>
+                <tr>
+                  <td>}</td>
+                  <td>前の空行に移動</td>
+                </tr>
+                <tr>
+                  <td>:数字</td>
+                  <td>数字 行目に移動</td>
+                </tr>
+                <tr>
+                  <td>f 〇</td>
+                  <td>次の 〇 に移動 (行内で検索する)</td>
+                </tr>
+              </table>
+            </li>
+            <br>
+            <li>文字入力
+              <table class="keys">
+                <tr>
+                  <td>I</td>
+                  <td>行頭に文字を入力する（インサートモードになる）</td>
+                </tr>
+                <tr>
+                  <td>A</td>
+                  <td>行末に文字を入力する（インサートモードになる）</td>
+                </tr>
+                <tr>
+                  <td>O</td>
+                  <td>現在行の一つ上の行に文字を入力する（インサートモードになる）</td>
+                </tr>
+                <tr>
+                  <td>cc</td>
+                  <td>現在行を消して、その行に文字を入力する（インサートモードになる）</td>
+                </tr>
+                <tr>
+                  <td>x</td>
+                  <td>カーソルのある1文字を削除</td>
+                </tr>
+                <tr>
+                  <td>X</td>
+                  <td>カーソルの前を1文字削除 (インサートモードでのbackspaceキーと同じ)</td>
+                  <tr>
+                    <td>dd</td>
+                    <td>現在行を削除</td>
+                  </tr>
+                  <tr>
+                    <td>d</td>
+                    <td>削除 (範囲選択をして、その範囲を削除するときなどに使用）</td>
+                  </tr>
+              </table>
+              <div class="try">
+                <span class="try-title">Try!</span>
+                いらない行を消す
+                <ol>
+                  <li>not necessary のコメントの行で dd</li>
+                </ol>
+              </div>
+            </li>
+            <br>
+            <li>コピー & ペースト
+              <table class="keys">
+                <tr>
+                  <td>yy</td>
+                  <td>現在行をヤンク</td>
+                </tr>
+                <tr>
+                  <td>y</td>
+                  <td>ヤンク（範囲選択をして、その範囲をヤンクするときなどに使用）</td>
+                </tr>
+                <tr>
+                  <td>p</td>
+                  <td>カーソルの後ろにペースト</td>
+                </tr>
+                <tr>
+                  <td>P</td>
+                  <td>カーソル位置にペースト</td>
+                </tr>
+              </table>
+              <div class="try">
+                <span class="try-title">Try!</span>
+                <ol>
+                  <li>11行目の return の行で dd</li>
+                  <li>カーソルを 16行目 に移動</li>
+                  <li>p で貼り付け</li>
+                </ol>
+              </div>
+            </li>
+            <br>
+            <li>置換
+              <table class="keys">
+                <tr>
+                  <td>r</td>
+                  <td>カーソルのある1文字を置換（r押した後、置換したい文字を入力）</td>
+                </tr>
+                <tr>
+                  <td>R</td>
+                  <td>カーソル位置から、文字の上書きを始める（いわば上書きモードになる）</td>
+                </tr>
+              </table>
+            </li>
+            <br>
+            <li>検索
+              <ul>
+                <li>/ を押すと、検索モードになり、つづけて検索したい文字列を入力して Enter を押す</li>
+                <li><b>*</b> を押すと、カーソル上の文字列（1単語）を検索する</li>
+                <li><b>n</b> で次のヒット文字列、<b>shift-n</b> で前のヒット文字列に移動する</li>
+              </ul>
+            </li>
+            <br>
+            <li>インデント
+              <table class="keys">
+                <tr>
+                  <td>==</td>
+                  <td>現在行をオートインデント
+                </tr>
+                <tr>
+                  <td>=</td>
+                  <td>選択範囲をオートインデント</td>
+                </tr>
+                <tr>
+                  <td><<</td>
+                  <td>現在行を左に1つインデント</td>
+                </tr>
+                <tr>
+                  <td>>></td>
+                  <td>現在行を右に1つインデント</td>
+                </tr>
+              </table>
+              <div class="try">
+                <span class="try-title">Try!</span>
+                全行を自動でオートインデント
+                <ol>
+                  <li>gg</li>
+                  <li>=</li>
+                  <li>G</li>
+                </ol>
+            </li>
+            <br>
+            <li>Undo & Redo
+              <table class="keys">
+                <tr>
+                  <td>u</td>
+                  <td>一つ前の操作を取り消す(Undo)</td>
+                </tr>
+                <tr>
+                  <td>ctrl-r</td>
+                  <td>Undoの逆</td>
+                </tr>
+                <tr>
+                  <td>.</td>
+                  <td>一つ前の一連の動作を繰り返す</td>
+                </tr>
+              </table>
+              <div class="try">
+                <span class="try-title">Try!</span>
+                <ol>
+                  同じ文字の挿入を繰り返す
+                  <li>46行目に移動</li>
+                  <li>j = 2 の 2 にカーソルを移動</li>
+                  <li>a</li>
+                  <li>, j++ と入力</li>
+                  <li>Esc</li>
+                  <li>50行目の j = 2 の 2に移動して . と打つ</li>
+                  <li>54行目の j = 2 の 2に移動して . と打つ</li>
+                </ol>
+              </div>
+            </li>
+            <br>
+            <li>その他
+              <table class="keys">
+                <tr>
+                  <td>ctrl-a</td>
+                  <td>数値のインクリメント</td>
+                </tr>
+                <tr>
+                  <td>ctrl-x</td>
+                  <td>数値のデクリメント</td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+              </div>
 
-  </main>
-</body>
+              <!-- 範囲選択 -->
+              <div class="sub-contents">
+                <h3 id="visual">範囲選択</h3>
+                <ul>
+                  <li>次のようなコマンドでビジュアルモードに移行し、カーソル移動で範囲選択する
+                    <table class="keys">
+                      <tr>
+                        <td>v</td>
+                        <td>普通のビジュアルモードになる</td>
+                      </tr>
+                      <tr>
+                        <td>V</td>
+                        <td>行単位で範囲選択できる</td>
+                      </tr>
+                      <tr>
+                        <td>ctrl-v</td>
+                        <td>矩形選択モードになる</td>
+                      </tr>
+                    </table>
+                    <table class="keys">
+                      <tr>
+                        <td>(ビジュアルモード中に) u</td>
+                        <td>小文字にする</td>
+                      </tr>
+                      <tr>
+                        <td>(ビジュアルモード中に) U</td>
+                        <td>大文字にする</td>
+                      </tr>
+                    </table>
+                  </li>
+                  <br>
+                  <li>縦に矩形選択して <b>I</b> を押すと、複数行にまとめて入力できる</li>
+                  <div class="try">
+                    <span class="try-title">Try!</span>
+                    PRINTF を printf に直す
+                    <ol>
+                      <li>PRINTF の P の上にカーソルを移動する</li>
+                      <li>v</li>
+                      <li>e</li>
+                      <li>u</li>
+                    </ol>
+                  </div>
+                  <div class="try">
+                    <span class="try-title">Try!</span>
+                    複数行まとめて挿入
+                    <ol>
+                      <li>カーソルを 21行目 に移動</li>
+                      <li>ctrl-v &emsp; ← 矩形選択モードへ</li>
+                      <li>j j j &emsp; ← 24行目 まで選択</li>
+                      <li>$ &emsp; ← 行末まで選択</li>
+                      <li>A &emsp; ← 挿入モードへ</li>
+                      <li>; と入力</li>
+                      <li>Esc</li>
+                      </li>
+                </ul>
+                  </div>
+
+                  <!-- 検索して一括置換 -->
+                  <div class="sub-contents">
+                    <h3 id="replace">検索して一括置換</h3>
+                    <ul>
+                      <li>コマンドモードで <b>s</b> を入力することで、一括置換ができる</li>
+                      <li>次のように入力することで、現在行で最初にヒットした文字列が置換される</li>
+                      <div class="syntax-1">
+                        <b>:s/置換したい文字列/置換先</b>
+                      </div>
+                      <div class="replace-range">
+                        <li>また、次のように範囲を指定することもできる
+                          <div class="syntax"><b>:s/置換したい文字列/置換先/<font color="#ff0000">g</font></b>
+                          </div>
+                          現在行でヒットした文字列すべてを置換
+                          <div class="syntax"><b>:<font color="#ff0000">%</font>s/置換したい文字列/置換先/<font color="#ff0000">g</font></b>
+                          </div>
+                          全行でヒットした文字列すべてを置換
+                          <div class="syntax"><b>:<font color="#ff0000">1, 10</font>s/置換したい文字列/置換先/g<font color="#ff0000">c</font></b>
+                          </div>
+                          1~10行目でヒットした文字列を、置換していいか確認しながら置換
+                        </li>
+                        <div class="try">
+                          <span class="try-title">Try!</span>
+                          返値の型 char を void に直す
+                          <ol>
+                            <li>:%s/char/void/g</li>
+                          </ol>
+                        </div>
+                      </div>
+                      <li>置換や検索には、<font color="#1e90ff">正規表現</font>を使うことができる</li>
+                      <li>正規表現を使うことで、置換・検索できる幅が広がる
+                        <br>
+                        （例）文末 を ; に置換
+                        <br>
+                        <div class="syntax-2">
+                          <b>:s/$/;</b>
+                        </div>
+                      </li>
+                      <li>置換や検索で特殊文字を使うときは、<b>\</b> をつける
+                        <br>
+                        （例）すべての ( を { に変える
+                        <div class="syntax-2">
+                          <b>:%s/<font color="#ff0000">\</font>(/<font color="#ff0000">\</font>{/g</b>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- タブ -->
+                  <div class="sub-contents">
+                    <h3 id="tab">タブ</h3>
+                    <ul>
+                      <li>1つのvim上で、複数のタブを使って複数のファイルを開ける
+                        <table class="keys">
+                          <tr>
+                            <td>:tabe</td>
+                            <td>別タブを開く</td>
+                          </tr>
+                          <tr>
+                            <td>:tabe {ファイル名}</td>
+                            <td>別タブで{ファイル名}を開く</td>
+                          </tr>
+                          <tr>
+                            <td>gt</td>
+                            <td>次のタブに移動</td>
+                          </tr>
+                          <tr>
+                            <td>gT</td>
+                            <td>前のタブに移動</td>
+                          </tr>
+                          <tr>
+                            <td>:tabc</td>
+                            <td>現在のタブを閉じる</td>
+                          </tr>
+                          <tr>
+                            <td>:tabo</td>
+                            <td>今いるタブ以外のタブをすべて閉じる</td>
+                          </tr>
+                        </table>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- 画面分割 -->
+                  <div class="sub-contents">
+                    <h3 id="split">画面分割</h3>
+                    <ul>
+                      <li>画面を分割し、複数ファイルを開くことができる</li>
+                      <li>あるファイルを見ながら、もう一つのファイルを編集する、といったことも</li>
+                      <table class="keys">
+                        <tr>
+                          <td>:sp</td>
+                          <td>画面を縦に分割して同じファイルを開く</td>
+                        </tr>
+                        <tr>
+                          <td>:vs</td>
+                          <td>画面を横に分割して同じファイルを開く</td>
+                        </tr>
+                        <tr>
+                          <td>:vs {ファイル名}</td>
+                          <td>画面を横に分割して {ファイル名} を開く</td>
+                        </tr>
+                        <tr>
+                          <td>ctrl-w w</td>
+                          <td>次の画面に移動</td>
+                        </tr>
+                        <tr>
+                          <td>ctrl-w [方向キー(h,j,k,l)]</td>
+                          <td>その方向の画面に移動 (ctrl-w hなら左のタブへ移動)</td>
+                        </tr>
+                        <tr>
+                          <td>ctrl-w x</td>
+                          <td>分割した二つの画面を入れ替える</td>
+                        </tr>
+                      </table>
+                    </ul>
+                  </div>
+
+                  <!-- バッファ -->
+                  <div class="sub-contents">
+                    <h3 id="buffer">バッファ</h3>
+                    <ul>
+                      <li>バッファを使って、複数のファイルを開くことができる</li>
+                      <li>最初にvimを起動したときも、実はバッファを一つ使っている</li>
+                      <li>新しいタブで開いた時も、新しくバッファを使っている</li>
+                      <table class="keys">
+                        <tr>
+                          <td>:e</td>
+                          <td>新規ファイルを新しいバッファで開く</td>
+                        </tr>
+                        <tr>
+                          <td>:e {ファイル名}</td>
+                          <td>{ファイル名} を新しいバッファで開く</td>
+                        </tr>
+                        <tr>
+                          <td>:bn</td>
+                          <td>次のバッファに移る</td>
+                        </tr>
+                        <tr>
+                          <td>:bp</td>
+                          <td>前のバッファに移る</td>
+                        </tr>
+                        <tr>
+                          <td>:ls</td>
+                          <td>今開いているバッファ一覧を表示する</td>
+                        </tr>
+                        <tr>
+                          <td>:b {数字}</td>
+                          <td>{数字}番のバッファを開く</td>
+                        </tr>
+                        <tr>
+                          <td>:bd {数字}</td>
+                          <td>{数字}番のバッファを消す</td>
+                        </tr>
+                      </table>
+                    </ul>
+                  </div>
+
+                  <!-- レジスタ -->
+                  <div class="sub-contents">
+                    <h3 id="register">レジスタ</h3>
+                    <ul>
+                      <li>マクロ機能(レジスタに操作を記憶する)を使うと、一連のコマンド操作を記憶できる</li>
+                      <li><b>q</b> と {英字または数字} を押すと、そのあとのコマンドがレジスタに記憶される</li>
+                      <li>もう一度 <b>q</b> を押すと、記録を終了する
+                        <br>
+                        （例）レジスタa に記憶する
+                        <table class="seq-cmd">
+                          <tr>
+                            <td><b>q a</b></td>
+                            <td>レジスタa に記録開始</td>
+                          </tr>
+                          <tr>
+                            <td><b>y e</b></td>
+                            <td>一単語をヤンク</td>
+                          </tr>
+                          <tr>
+                            <td><b>j</b></td>
+                            <td>一行下へ</td>
+                          </tr>
+                          <tr>
+                            <td><b>P</b></td>
+                            <td>カーソル位置にペースト</td>
+                          </tr>
+                          <tr>
+                            <td class="last-cmd"><b>q</b></td>
+                            <td class="last-cmd">記録終了</td>
+                          </tr>
+                        </table>
+                        この状態で、<b>@a</b> と入力すると、レジスタa に記録した一連の操作が実行される。
+                      </li>
+                      <table class="keys">
+                        <tr>
+                          <td><b>q a</b></td>
+                          <td>レジスタa に記録開始</td>
+                        </tr>
+                        <tr>
+                          <td><b>q 1</b></td>
+                          <td>レジスタ1 に記録開始</td>
+                        </tr>
+                        <tr>
+                          <td><b>:reg</b></td>
+                          <td>レジスタに入ってるコマンドを一覧表示</td>
+                        </tr>
+                        <tr>
+                          <td><b>@ a</b></td>
+                          <td>レジスタa に入ってるコマンドを実行</td>
+                        </tr>
+                      </table>
+                      
+                      <br>
+                      <li>また、 <b>"</b> はレジスタ操作を意味する。<br>" と他の操作を組み合わせることで、そのレジスタの内容を扱える
+                        <br>
+                        （例）
+                        <table class="seq-cmd">
+                          <tr>
+                            <td><b>" b P</b></td>
+                            <td>レジスタb の内容をテキストとしてペーストする</td>
+                          </tr>
+                          <tr>
+                            <td><b>" 2 yy</b></td>
+                            <td>現在行をヤンクして レジスタb に記録する</td>
+                          </tr>
+                        </table>
+                      </li>
+                      <br>
+                      <li>インサートモードやコマンドモード時にレジスタ内容を入力するときは、<br><b>ctrl-r</b> を押して、レジスタ番号を入力する</li>
+                      <br>
+                      <li>レジスタの割り当て
+                        <table class="keys">
+                          <tr>
+                            <th>レジスタ</th>
+                            <th>役割</th>
+                          </tr>
+                          <tr>
+                            <td>0</td>
+                            <td>直前のヤンクが入るレジスタ</td>
+                          </tr>
+                          <tr>
+                            <td>1~9</td>
+                            <td>行削除の内容が1から順に入っていく (ユーザが書き込むことも可)</td>
+                          </tr>
+                          <tr>
+                            <td>a~z</td>
+                            <td>ユーザが自由に使えるレジスタ</td>
+                          </tr>
+                          <tr>
+                            <td>%</td>
+                            <td>現在のファイル名が入ってるレジスタ</td>
+                          </tr>
+                          <tr>
+                            <td>/</td>
+                            <td>直前の検索文字列が入ってるレジスタ</td>
+                          </tr>
+                          <tr>
+                            <td>:</td>
+                            <td>直前のコマンドモードでのコマンドが入ってるレジスタ</td>
+                          </tr>
+                          <tr>
+                            <td>.</td>
+                            <td>直前のインサートモードでの入力が入ってるレジスタ</td>
+                          </tr>
+                          <tr>
+                            <td>* または +</td>
+                            <td>クリップボードの内容が入ってるレジスタ (対応するvimのみ)</td>
+                          </tr>
+                        </table>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- コマンド履歴, 検索履歴 -->
+                  <div class="sub-contents">
+                    <h3 id=history">コマンド履歴・検索履歴</h3>
+                    <ul>
+                      <li><b>q:</b> と打つと、コマンドモードで打ったコマンド履歴のウィンドウが表示される</li>
+                      <li><b>q/</b> と打つと、検索履歴のウィンドウが表示される</li>
+                      <li>これらウィンドウを<font color=red>コマンドラインウィンドウ</font>という</li>
+                      <li>上下移動で選んで、Enter でそのコマンドを実行, 文字列を検索できる</li>
+                      <li>履歴ウィンドウ内で履歴を編集して、そのまま検索・コマンド実行することも可能</li>
+                      <li>コマンドモードや検索では、<b>ctrl-n</b>, <b>ctrl-p</b> で、前に打ったコマンドをさかのぼれる</li>
+                      <li>コマンドラインウィンドウは、<b>:q</b> で閉じれる</li>
+                    </ul>
+                  </div>
+
+                  <!-- 折り畳み -->
+                  <div class="sub-contents">
+                    <h3 id="fold">折り畳み</h3>
+                    <ul>
+                      <li>まとめたい行を折りたたむことができる</li>
+                      <table class="keys">
+                        <tr>
+                          <td>zf</td>
+                          <td>折り畳みの作成</td>
+                        </tr>
+                        <tr>
+                          <td>za</td>
+                          <td>折り畳みの開閉</td>
+                        </tr>
+                        <tr>
+                          <td>zd</td>
+                          <td>折り畳みの削除</td>
+                        </tr>
+                        <tr>
+                          <td>zn</td>
+                          <td>バッファ内の折り畳みをすべて開く</td>
+                        </tr>
+                        <tr>
+                          <td>zm</td>
+                          <td>バッファ内の折り畳みをすべて閉じる</td>
+                        </tr>
+                      </table>
+                    </ul>
+                  </div>
+
+                  <!-- オペレータとモーション -->
+                  <div class="sub-contents">
+                    <h3 id=ope_motion">オペレータとモーション</h3>
+                    <ul>
+                      <li>vimは<b><font color=blue>オペレータ</font></b>と<b><font color=blue>モーション</font></b>を組み合わせて様々な操作ができる</li>
+                      <li>オペレータ : どんな操作をするか</li>
+                      <li>モーション : どの範囲にするか</li>
+                      <li>(例)
+                        <ul>
+                          <li><b>y G</b> : ファイルの最後までをヤンク</li>
+                          <li><b>d w</b> : 1単語(次の単語の頭まで)削除</li>
+                          <li><b>z f }</b> : 次の}まで折りたたむ</li>
+                        </ul>
+                      </li>
+                      <li>また、数字とモーションを組み合わせて、コマンドを複数回連続で指示できる</li>
+                      <li>(例)
+                        <ul>
+                          <li><b>2 dd</b> : 2回ddをする (2行削除)</li>
+                          <li><b>5 p</b> : 5回pをする (5回ペースト)</li>
+                          <li><b>2 y w</b> : 2回ywをする (2単語ヤンク)</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- バイナリ編集 -->
+                  <div class="sub-contents">
+                    <h3 id="binary">vimでバイナリ編集</h3>
+                    <ul>
+                      <li>vimをバイナリエディタとして扱う方法</li>
+                      <li><b>:%!xxd</b> でバイナリ表示になる</li>
+                      <li><b>:%!xxd</b> -r で元に戻る</li>
+                    </ul>
+                  </div>
+
+              </div>
+    </main>
+  </body>
 
 </html>
 

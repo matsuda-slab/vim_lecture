@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>vim講座 | vimrcについて</title>
+    <link rel="stylesheet" href="css/common.css">
+  </head>
+
+  <body>
+    <main>
+      <h1>vim講座</h1>
+
+      <!-- メニュー -->
+      <div id=menu>
+        <ol>
+          <li><a href="intro.html">vimとは</a></li>
+          <li><a href="basic.html">vimの基本操作</a></li>
+          <li><a href="advance.html">vimのさまざまな機能</a></li>
+          <li class="current"><a href="setting.html">vimの設定</a></li>
+          <li><a href="tech.html">便利な応用技</a></li>
+        </ol>
+      </div>
+
+      <h2 class="sub-title">vimの設定</h2>
+
+      <div class="contents">
+
+        <!-- コマンドモードでの設定 -->
+        <div class="sub-contents">
+          <h3>コマンドモードで設定</h3>
+          <ul>
+            <li>コマンドモードでvimエディタの設定ができる</li>
+            <li>この方法では、vimを閉じると設定が残らない</li>
+          </ul>
+        </div>
+
+        <!-- vimrc -->
+        <div class="sub-contents">
+          <h3>vimrc</h3>
+          <ul>
+            <li>vimエディタの設定を残したいときは、vimrcというファイルに書く</li>
+            <li>vimを起動する際に、ホームディレクトリ下の .vimrc というファイルが読み込まれている</li>
+            <li>vimrcに書いて設定できること
+              <ul>
+                <li>エンコードの設定</li>
+                <li>vimの標準機能(構文ハイライト, undodir, インデント, タブなど)のON/OFF</li>
+                <li>autocmd(特定のイベント時に自動的に動作するコマンド)の設定</li>
+                <li>キーバインドの設定</li>
+                <li>コマンドのエイリアス設定</li>
+                <li>各種プラグインの管理</li>
+                <li>vimのカラースキームの設定</li>
+                <li>ハイライトの設定</li>
+              </ul>
+              などなど
+            </li>
+          </ul>
+        </div>
+
+        <!-- runtimepath -->
+        <div class="sub-contents">
+          <h3>runtimepath</h3>
+          <ul>
+            <li><font color="red">runtimepath</font> は、vim起動時に読み込まれるファイルの場所を指定するオプション</li>
+            <li>ここにパスを指定することで、vim起動時にそのパスにあるプラグインなどが読みこまれる</li>
+            <li>デフォルトでは、/usr/share 以下と、ホームディレクトリの .vim というディレクトリが<br>設定されている</li>
+            <li>現在のruntimepathを確認したいときは、vim で<br>
+              <b>:echo &rtp</b><br>
+              と打つことで確認できる</li>
+            <li>特定のvimスクリプト(vimの設定ファイル)があるパスなどをruntimepathに加えたいときは、<br>
+              <b>set runtimepath+=パス</b><br>
+              とvimrcに書き込めばできる<br></li>
+            <li>新たなプラグインを配置するときなどに設定する</li>
+          </ul>
+        </div>
+
+        <!-- vimrcの記述例 -->
+        <div class="sub-contents">
+          <h3>vimrcの記述例</h3>
+          <ul>
+            <li>set number : 行番号を表示する</li>
+            <li>set smartindent : C言語ライクなコードの自動インデント機能をONにする</li>
+            <li>他にもたくさん</li>
+            <div class="try">
+              <span class="try-title">Try!</span>
+              <ol>
+                <li>.vimrcを開く
+                  <table>
+                    <tr class="cmd">
+                      <td>$ vim ~/.vimrc</td>
+                    </tr>
+                  </table>
+                </li>
+                <li>以下の設定を.vimrcに記述しよう
+                  <ul>
+                    <li>set number</li>
+                    <li>set cursorline</li>
+                    <li>set hlsearch</li>
+                    <li>set tabstop=2</li>
+                    <li>set cindent</li>
+                    <li>set nocompatible</li>
+                    <li>set ignorecase</li>
+                    <li>set spell</li>
+                    <li>set showcmd</li>
+                    <li>set undofile</li>
+                    <li>set undodir=$HOME/.vim/undodir</li>
+                    <li>nmap &lt;Esc&gt;&lt;Esc&gt; :nohlsearch&lt;CR&gt;</li>
+                    <li>syntax on</li>
+                    <li>filetype plugin indent on</li>
+                  </ul>
+                </li>
+                <li>undodirを作成する
+                  <table>
+                    <tr class="cmd">
+                      <td>$ mkdir -p ~/.vim/undodir</td>
+                    </tr>
+                  </table>
+                </li>
+              </ol>
+            </div>
+          </ul>
+        </div>
+
+        <!-- プラグイン管理 -->
+        <div class="sub-contents">
+          <h3>プラグイン管理</h3>
+          <div class="try">
+            以下コマンドで vimのバージョンを確認
+            <table>
+              <tr class="cmd">
+                <td>$ vim -version</td>
+              </tr>
+            </table>
+          </div>
+          <ul>
+            <li>vim8.0以降 : <font color="red">dein</font> が使える</li>
+            <li>vim7.4以下 : <font color="red">dein</font> が使えない &emsp; →  &emsp;  <font color="blue">neobundle</font> を使ってプラグイン管理</li>
+            <li>vim8.0になると、neobundleがうまく機能しないので、vim8.0に上げるときは、<br>
+              deinへの乗り換えをおススメします</li>
+            <br>
+            <li>neobundleの導入
+              <div class="try">
+                <span class="try-title">Try!</span>
+                <ol>
+                  <li>neobundle用のディレクトリを作成<br>
+                    <table>
+                      <tr class="cmd">
+                        <td>$ mkdir -p ~/.vim/bundle</td>
+                      </tr>
+                    </table>
+                  </li>
+                  <br>
+                  <li>neobundleをgitから取得
+                    <table>
+                      <tr class="cmd">
+                        <td>$ git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim</td>
+                      </tr>
+                    </table>
+                  </li>
+                  <br>
+                  <li>vimrcに以下の内容を追記する</li>
+                  <table>
+                    <tr class="cmd">
+                      <td>filetype plugin indent off<br>
+                        set runtimepath+=~/.vim/bundle/neobundle.vim/<br>
+                        call neobundle#begin(expand('~/.vim/bundle/'))<br>
+                        NeoBundleFetch 'Shougo/neobundle.vim'<br><br>
+
+                        call neobundle#end()<br>
+                        filetype plugin indent on
+                      </td>
+                    </tr>
+                  </table>
+                </ol>
+              </div>
+            </li>
+            <li>プラグインを入れてみよう
+              <div class="try">
+                <span class="try-title">Try!</span>
+                <ol>
+                  <li>vimrcに以下を追記
+                    <table>
+                      <tr class="cmd">
+                        <td>call neobundle#begin(expand('~/.vim/bundle/'))<br>
+                          NeoBundleFetch 'Shougo/neobundle.vim'<br><br>
+                          NeoBundle 'Townk/vim-autoclose' &emsp; ←  &emsp; 追記!<br><br>
+                          call neobundle#end()
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+                  <br>
+                  <li>一旦vimを閉じて、vimを開きなおし、カッコを打ってみよう</li>
+                </ol>
+              </div>
+            </li>
+            <li>これで、vim-autocloseプラグインがインストールされた</li>
+            <li>~/.vim/bundle/ に vim-autoclose/ が追加されていることを確認</li>
+            <br>
+            <li>プラグインの例
+              <ul>
+                <li>neocomplete : 強力な補完機能</li>
+                <li>vim-autoclose : カッコを自動的に閉じてくれる</li>
+                <li>vim-endwise : ifとかの終了宣言を自動でしてくれる</li>
+                <li>vim-easy-align : 文章整形プラグイン</li>
+                <li>emmet-vim : htmlのタグを一瞬で入力してくれる</li>
+              </ul>
+              1万以上あるらしい
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </main>
+  </body>
+
+</html>
+
